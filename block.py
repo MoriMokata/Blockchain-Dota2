@@ -5,10 +5,10 @@ import hashlib
 
 BLOCKCHAIN_DIR = 'blockchain/'
 
-# def get_hash(prev_block):
-#     with open(BLOCKCHAIN_DIR + prev_block, 'rb') as f:
-#         content = f.read()
-#     return hashlib.md5(content).hexdigest()
+def get_hash(prev_block):
+    with open(BLOCKCHAIN_DIR + prev_block, 'rb') as f:
+        content = f.read()
+    return hashlib.md5(content).hexdigest()
 
 # def check_integrity():
 #     files = sorted(os.listdir(BLOCKCHAIN_DIR), key=lambda x: int(x))
