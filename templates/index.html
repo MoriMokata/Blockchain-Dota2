@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>BlockChain</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto ">
+                <h1 class="mb-5 text-center">DOTA 2 Tour Division I</h1>
+
+
+                <form action="{{ url_for('index')}}" method="POST">
+                    <label for="Team1" class="form-label">Team 1</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Name</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                            name="Team1">
+                    </div>
+                    <label for="Team2" class="form-label">Team 2</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Name</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                            name="Team2">
+                    </div>
+
+                    <label for="Time" class="form-label">Time</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">DD/MM/YYYY-hh:mm</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                            name="Time">
+                    </div>
+
+                    <button class="btn btn-primary">Submit</button>
+
+
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5 text-center">
+                <form action="{{ url_for('show_db') }}">
+                    <button class="btn btn-outline-info">Show Data</button>
+                </form>
+
+                {% for res in show %}
+
+                <div>
+                    Block {{ res['block'] }} : {{res['Team1']}} : {{res['Team2']}} : {{res['Time']}}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-6 mx-auto mt-5 text-center">
+                <form action="{{ url_for('check') }}">
+                    <button class="btn btn-outline-info">Check</button>
+                </form>
+
+                {% for res in checking_results %}
+
+                <div>
+                    Block {{ res['block'] }} : {{res['results']}}
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

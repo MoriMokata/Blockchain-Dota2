@@ -23,14 +23,35 @@ def check_integrity():
         prev_filename = block.get('prev_block').get('filename')
         
         actual_hash = get_hash(prev_filename)
+
         if prev_hash == actual_hash:
             res = 'OK'
         else:
             res = 'Was Changed'
 
+        print("Pre",prev_hash)
+        print("Actual",actual_hash)
         print(f'Block {prev_filename} : {res}')
         results.append({'block' : prev_filename, 'results' : res})
     return results
+
+def show_data():
+    files = sorted(os.listdir(BLOCKCHAIN_DIR), key=lambda x: int(x))
+    data = []
+    for file in files[1:]:
+        with open(BLOCKCHAIN_DIR + file) as f:
+            block = json.load(f)
+        
+        prev_filename = block.get('prev_block').get('filename')
+        Team1 = block.get('Team1')
+        Team2 = block.get('Team2')
+        Time =  block.get('Time')
+        actual_hash = get_hash(prev_filename)
+
+        data.append({'block' : prev_filename, 'Team1' : Team1, 'Team2' : Team2, 'Time' : Time})
+    return data
+
+
 def write_block(Team1, Team2, Time):
 
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
@@ -55,16 +76,16 @@ def write_block(Team1, Team2, Time):
 
 
 def main():
-    write_block(Team1="PSG.LSD", Team2="Nigma", Time="5/05/2022-13:00")
-    write_block(Team1="PSG.LSD", Team2="OG", Time="5/05/2022-13:00")
-    write_block(Team1="OG", Team2="Nigma", Time="5/05/2022-13:00")
-    write_block(Team1="PSG.LSD", Team2="T1", Time="5/05/2022-13:00")
-    write_block(Team1="T1", Team2="FNATIC", Time="5/05/2022-13:00")
-    write_block(Team1="PSG.LSD", Team2="FNATIC", Time="5/05/2022-13:00")
-    write_block(Team1="T1", Team2="PSG.LGD", Time="5/05/2022-13:00")
-    write_block(Team1="BOOM", Team2="Nigma", Time="5/05/2022-13:00")
-    write_block(Team1="T1", Team2="BOOM", Time="5/05/2022-13:00")
-    write_block(Team1="FNATIC", Team2="BOOM", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="Nigma", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="OG", Time="5/05/2022-13:00")
+    # write_block(Team1="OG", Team2="Nigma", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="T1", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="FNATIC", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="FNATIC", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="PSG.LGD", Time="5/05/2022-13:00")
+    # write_block(Team1="BOOM", Team2="Nigma", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="BOOM", Time="5/05/2022-13:00")
+    # write_block(Team1="FNATIC", Team2="BOOM", Time="5/05/2022-13:00")
     check_integrity()
 
 if __name__ == '__main__':
