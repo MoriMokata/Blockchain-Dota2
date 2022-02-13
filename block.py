@@ -10,27 +10,27 @@ def get_hash(prev_block):
         content = f.read()
     return hashlib.md5(content).hexdigest()
 
-# def check_integrity():
-#     files = sorted(os.listdir(BLOCKCHAIN_DIR), key=lambda x: int(x))
+def check_integrity():
+    files = sorted(os.listdir(BLOCKCHAIN_DIR), key=lambda x: int(x))
     
-#     results = []
+    results = []
     
-#     for file in files[1:]:
-#         with open(BLOCKCHAIN_DIR + file) as f:
-#             block = json.load(f)
+    for file in files[1:]:
+        with open(BLOCKCHAIN_DIR + file) as f:
+            block = json.load(f)
         
-#         prev_hash = block.get('prev_block').get('hash')
-#         prev_filename = block.get('prev_block').get('filename')
+        prev_hash = block.get('prev_block').get('hash')
+        prev_filename = block.get('prev_block').get('filename')
         
-#         actual_hash = get_hash(prev_filename)
-#         if prev_hash == actual_hash:
-#             res = 'OK'
-#         else:
-#             res = 'Was Changed'
+        actual_hash = get_hash(prev_filename)
+        if prev_hash == actual_hash:
+            res = 'OK'
+        else:
+            res = 'Was Changed'
 
-#         print(f'Block {prev_filename} : {res}')
-#         results.append({'block' : prev_filename, 'results' : res})
-#     return results
+        print(f'Block {prev_filename} : {res}')
+        results.append({'block' : prev_filename, 'results' : res})
+    return results
 def write_block(Team1, Team2, Time):
 
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
@@ -65,7 +65,7 @@ def main():
     # write_block(Team1="BOOM", Team2="Nigma", Time="5/05/2022-13:00")
     # write_block(Team1="T1", Team2="BOOM", Time="5/05/2022-13:00")
     # write_block(Team1="FNATIC", Team2="BOOM", Time="5/05/2022-13:00")
-    # check_integrity()
+    check_integrity()
 
 if __name__ == '__main__':
     main()
