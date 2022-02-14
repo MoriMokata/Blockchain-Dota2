@@ -1,9 +1,9 @@
 {
-    "Team1" : "PSG.LSD",
-    "Team2" : "Nigma",
-    "Time" : "5/05/2022-13:00",
+    "Team1" : "",
+    "Team2" : "",
+    "Time" : "",
     "prev_block" : {
-        "hash" : "",
+        "hash" : "Genisis Block",
         "filename" : ""
     }
 }
