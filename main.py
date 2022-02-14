@@ -11,11 +11,12 @@ def index():
     if request.method == 'POST':
         Team1 = request.form.get('Team1')
         Team2 = request.form.get('Team2')
+        Score = request.form.get('Score')
         Time = request.form.get('Time')
         print(Team1)
         print(Team2)
         print(Time)
-        write_block(Team1=Team1, Team2=Team2, Time=Time)
+        write_block(Team1=Team1, Team2=Team2, Score=Score, Time=Time)
 
     return render_template('index.html')
 
