@@ -1,9 +1,11 @@
 {
     "Team1": "PSG.LSD",
     "Team2": "Nigma",
+    "Score": "2-0",
     "Time": "5/05/2022-13:00",
+    "block_hash": "552c2cbd81c0c3e56f5a4f0b1382ee1e96380ae42e56e6cfdc210cf0dd79a905",
     "prev_block": {
-        "hash": "96743cd64a2bb8cc9414556e49bf233bc80818c0ae0669a97b43570dc2044b66",
-        "filename": "1"
+        "hash": "3e44b4bdc5bca5e79394af2547969b9cce1ab7b0e957e4197dfe1090498f8f59",
+        "blockIndex": "1"
     }
 }

@@ -1,9 +1,11 @@
 {
     "Team1": "FNATIC",
     "Team2": "BOOM",
+    "Score": "2-0",
     "Time": "5/05/2022-13:00",
+    "block_hash": "30f53718a49d2be4b1af3f85f5fca7816ab2f15f19663f1648c19600976d7c48",
     "prev_block": {
-        "hash": "74ae5c904e9e7fb27e8bb011368667ba5c1aa099153a984a323a81f483fa0334",
-        "filename": "10"
+        "hash": "d6338ac8b8bbd8c2cf3feb6599fe4ca68adfea0205b8f7d63911358a07ee5a4d",
+        "blockIndex": "10"
     }
 }

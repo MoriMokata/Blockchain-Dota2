@@ -24,7 +24,6 @@
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">Name</span>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
-                        
                             name="Team1">
                     </div>
                     <label for="Team2" class="form-label">Team 2</label>
@@ -34,14 +33,21 @@
                             name="Team2">
                     </div>
 
+                    <label for="Score" class="form-label">Score</label>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon3">Score</span>
+                        <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
+                            name="Score">
+                    </div>
+
                     <label for="Time" class="form-label">Time</label>
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="basic-addon3">DD/MM/YYYY-hh:mm</span>
                         <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3"
                             name="Time">
                     </div>
-
-                    <button class="btn btn-primary">Submit</button>
+                        
+                    <button class="btn btn-outline-success">Submit</button>
 
 
 
@@ -58,14 +64,33 @@
                 <form action="{{ url_for('show_db') }}">
                     <button class="btn btn-outline-info">Show Data</button>
                 </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Block</th>
+                            <th scope="col">Team1</th>
+                            <th scope="col">Team2</th>
+                            <th scope="col">Score</th>
+                            <th scope="col">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                {% for res in show %}
 
-                <div>
-                    Block {{ res['block'] }} : {{res['Team1']}} : {{res['Team2']}} : {{res['Time']}}
-                </div>
+                        {% for res in show %}
 
-                {% endfor %}
+                        <tr>
+                            <td>{{ res['block'] }}</td>
+                            <td>{{res['Team1']}}</td>
+                            <td>{{res['Team2']}}</td>
+                            <td>{{res['Score']}}</td>
+                            <td>{{res['Time']}}</td>
+                        </tr>
+
+
+                        {% endfor %}
+                    </tbody>
+                </table>
 
             </div>
 

@@ -1,9 +1,11 @@
 {
     "Team1": "T1",
     "Team2": "PSG.LGD",
+    "Score": "2-0",
     "Time": "5/05/2022-13:00",
+    "block_hash": "2fcd3ed6f260027b45f096746839ed1efabfafb8fce6abce44878e053bafb7be",
     "prev_block": {
-        "hash": "4675ce912fb4aa3f8ae0489aff8ecf3aa8c3133364a28c38630a3464dd50a666",
-        "filename": "7"
+        "hash": "7d3f275d0ef2bb08c2f1556ccd06b7baeaec3475f221bc1d5ddea1950ecbc2f6",
+        "blockIndex": "7"
     }
 }

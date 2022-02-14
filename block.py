@@ -10,50 +10,37 @@ def Create_hash(prev_block):
         block = json.load(f)
     
     prev_hash = block.get('prev_block').get('hash')
-    prev_filename = block.get('prev_block').get('filename')
+    prev_blockIndex = block.get('prev_block').get('blockIndex')
     Team1 = block.get('Team1')
     Team2 = block.get('Team2')
+    Score = block.get('Score')
     Time =  block.get('Time')
-    data = (f"Team1 : {Team1} Team2 : {Team2} Time : {Time} \n Previous hash : {prev_hash} filename : {prev_filename}")
+    data = (f"Team1 : {Team1} Team2 : {Team2} Score : {Score} Time : {Time} \n Previous hash : {prev_hash} blockIndex : {prev_blockIndex}")
     return hashlib.sha256(data.encode()).hexdigest()
 
-def Check_hash(prev_block,prev_hash):
-    with open(BLOCKCHAIN_DIR + prev_block) as f:
-        block = json.load(f)
-    prev_hash1 = block.get('prev_block').get('hash')
-    prev_filename = block.get('prev_block').get('filename')
-    Team1 = block.get('Team1')
-    Team2 = block.get('Team2')
-    Time =  block.get('Time')
-    data = (f"Team1 : {Team1} Team2 : {Team2} Time : {Time} \n Previous hash : {prev_hash} filename : {prev_filename}")
-    return hashlib.sha256(data.encode()).hexdigest()
 
 def check_integrity():
     files = sorted(os.listdir(BLOCKCHAIN_DIR), key=lambda x: int(x))
-    
     results = []
-    index = 0
-    prev_hash = []
-    prev_hash.append("Genisis Block")
+
     for file in files[1:]:
         with open(BLOCKCHAIN_DIR + file) as f:
             block = json.load(f)
         
-        prev_hash_db = block.get('prev_block').get('hash')
-        prev_filename = block.get('prev_block').get('filename')
-        hash = Check_hash(prev_filename,prev_hash[index])
-        prev_hash.append(hash)
+        block_hash = block.get('block_hash')
+        blockIndex = block.get('prev_block').get('blockIndex')
+        block_hash_db = Create_hash(str(int(blockIndex)+1))
 
-        if prev_hash_db == prev_hash[index+1]:
+        if block_hash == block_hash_db:
             res = 'OK'
         else:
             res = 'Was Changed'
 
-        print("Pre",prev_hash_db)
-        print("Actual",prev_hash[index+1])
-        print(f'Block {prev_filename} : {res}')
-        results.append({'block' : prev_filename, 'results' : res})
-        index = index+1
+        print("block_hash",block_hash)
+        print("block_hash_db",block_hash_db)
+        print(f'Block {blockIndex} : {res}')
+        results.append({'block' : blockIndex, 'results' : res})
+       
     return results
 
 def show_data():
@@ -63,29 +50,37 @@ def show_data():
         with open(BLOCKCHAIN_DIR + file) as f:
             block = json.load(f)
         
-        prev_filename = block.get('prev_block').get('filename')
+        prev_blockIndex = block.get('prev_block').get('blockIndex')
         Team1 = block.get('Team1')
         Team2 = block.get('Team2')
+        Score = block.get('Score')
         Time =  block.get('Time')
         
 
-        data.append({'block' : prev_filename, 'Team1' : Team1, 'Team2' : Team2, 'Time' : Time})
+        data.append({'block' : prev_blockIndex, 'Team1' : Team1, 'Team2' : Team2, 'Score' : Score, 'Time' : Time})
     return data
 
 
-def write_block(Team1, Team2, Time):
+def write_block(Team1, Team2, Score, Time):
 
     blocks_count = len(os.listdir(BLOCKCHAIN_DIR))
     prev_block = str(blocks_count)
-    
-
+    print(prev_block)
+    prev_hash = Create_hash(prev_block)
+    data_block_hash = (f"Team1 : {Team1} Team2 : {Team2} Score : {Score} Time : {Time} \n Previous hash : {prev_hash} blockIndex : {prev_block}")
+    block_hash = hashlib.sha256(data_block_hash.encode()).hexdigest()
     data = {
         "Team1": Team1,
         "Team2": Team2,
+        "Score" : Score,
         "Time": Time,
+        
+
+        "block_hash" :  block_hash,
+
         "prev_block": {
-            "hash": Create_hash(prev_block),
-            "filename": prev_block
+            "hash": prev_hash,
+            "blockIndex": prev_block
         }
     }
 
@@ -97,16 +92,16 @@ def write_block(Team1, Team2, Time):
 
 
 def main():
-    # write_block(Team1="PSG.LSD", Team2="Nigma", Time="5/05/2022-13:00")
-    # write_block(Team1="PSG.LSD", Team2="OG", Time="5/05/2022-13:00")
-    # write_block(Team1="OG", Team2="Nigma", Time="5/05/2022-13:00")
-    # write_block(Team1="PSG.LSD", Team2="T1", Time="5/05/2022-13:00")
-    # write_block(Team1="T1", Team2="FNATIC", Time="5/05/2022-13:00")
-    # write_block(Team1="PSG.LSD", Team2="FNATIC", Time="5/05/2022-13:00")
-    # write_block(Team1="T1", Team2="PSG.LGD", Time="5/05/2022-13:00")
-    # write_block(Team1="BOOM", Team2="Nigma", Time="5/05/2022-13:00")
-    # write_block(Team1="T1", Team2="BOOM", Time="5/05/2022-13:00")
-    # write_block(Team1="FNATIC", Team2="BOOM", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="Nigma", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="OG", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="OG", Team2="Nigma", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="T1", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="FNATIC", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="PSG.LSD", Team2="FNATIC", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="PSG.LGD", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="BOOM", Team2="Nigma", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="T1", Team2="BOOM", Score="2-0", Time="5/05/2022-13:00")
+    # write_block(Team1="FNATIC", Team2="BOOM", Score="2-0", Time="5/05/2022-13:00")
     check_integrity()
 
 if __name__ == '__main__':
