@@ -1,9 +1,11 @@
 {
     "Team1": "BOOM",
     "Team2": "Nigma",
+    "Score": "2-0",
     "Time": "5/05/2022-13:00",
+    "block_hash": "6b43d80facc0bb51c82897653b5a50f6afa36581d1f889097897889b5557b656",
     "prev_block": {
-        "hash": "ef886302425d0df0ba7ad7e7e13c104089885a40210ae80eee1939303f5da8fe",
-        "filename": "8"
+        "hash": "2fcd3ed6f260027b45f096746839ed1efabfafb8fce6abce44878e053bafb7be",
+        "blockIndex": "8"
     }
 }

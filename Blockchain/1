@@ -1,10 +1,12 @@
 {
     "Team1" : "",
     "Team2" : "",
+    "Score" : "",
     "Time" : "",
+    "block_hash" : "",
     "prev_block" : {
         "hash" : "Genisis Block",
-        "filename" : ""
+        "blockIndex" : ""
     }
 }
 
