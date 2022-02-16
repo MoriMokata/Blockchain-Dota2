@@ -58,13 +58,13 @@
     </div>
 
 
-    <div class="container">
+    <div class=".container-md">
         <div class="row">
             <div class="col-6 mx-auto mt-5 text-center">
                 <form action="{{ url_for('show_db') }}">
                     <button class="btn btn-outline-info">Show Data</button>
                 </form>
-                <table class="table">
+                <table class="table ">
                     <thead>
                         <tr>
                             <th scope="col">Block</th>
@@ -72,6 +72,7 @@
                             <th scope="col">Team2</th>
                             <th scope="col">Score</th>
                             <th scope="col">Time</th>
+                            <th scope="col">Previous hash</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,6 +86,7 @@
                             <td>{{res['Team2']}}</td>
                             <td>{{res['Score']}}</td>
                             <td>{{res['Time']}}</td>
+                            <td>{{res['Prev_block']}}</td>
                         </tr>
 
 
